@@ -67,9 +67,9 @@ The drones start to follow the path in their formation
 
 To controll multiple drones with one PC/laptop etc. the wifi networks (and the sent udp packages) of the single drones have to be forwarded to one LAN-Network.
 This was done according to https://github.com/clydemcqueen/udp_forward.git
-A image for the Raspberry (only for the first one) is in this github repo (named rp1_image.zip)
 
-Write the image to an SD-card using a cardreader. (if you face problems with the size of the image, there are ways to shrink the image, you need to use an ubuntu operating system to do so)
+
+Write the image for the operating system of the Raspberry to an SD-card using a cardreader. (if you use an existing image and face problems with the size of the image, there are ways to shrink the image, you need to use an ubuntu operating system to do so)
 You need one rasperry Pi for each drone. Once you wrote the image and started the RPi you also need to adapt the file 'telloX.sh', so the udp packages get forwarded to the correct IP adresses (based on your LAN-network IP adresses). There is an image in this repo which shows the networks structure and IP adresses i used.
 
 Since we had problems with the RPi's onboard wifi module (driver crashed once videostream was started), we used extra USB wifidongles, one for each RPi.
