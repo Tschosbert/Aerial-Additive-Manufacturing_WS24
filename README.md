@@ -59,7 +59,7 @@ Run the following commands:
     source /usr/share/gazebo/setup.sh
  
 After that, you can start the simulation with 'ros2 launch print_controller simulate3drones_selfpositioning.py'
-This starts the simulation of 3 drones. The drones take off and fly to their starting formation. When this positions is reached, you can send the path by running 'ros2 run gcode_to_path PathFromGcode --ros-args -p gcode_path:="<Path to your GCode>"'
+This starts the simulation of 3 drones. The drones take off and fly to their starting formation. When this positions is reached, you can send the path by running `ros2 run gcode_to_path PathFromGcode --ros-args -p gcode_path:="<Path to your GCode>"`
 
 The drones start to follow the path in their formation
 
@@ -86,7 +86,7 @@ After 30 seconds the 3 drones automatically take off. I faced some problems with
   -> rarely but sometimes one or more dont take off (reason is not known) --> if this happens just restart the launchfile
 
 Then the drones fly to their starting positions in order to get to their flight formation.
-Once they are in formation, send the path with 'ros2 run gcode_to_path PathFromGcode --ros-args -p gcode_path:="<Path to your GCode>"'
+Once they are in formation, send the path with `ros2 run gcode_to_path PathFromGcode --ros-args -p gcode_path:="<Path to your GCode>"`
 When they reached their start formation, the drones start to fly along the path maintaining their formation. 
 
 To land the drones you need to call the following service:
