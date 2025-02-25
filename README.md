@@ -49,3 +49,58 @@ Connect to the Tello wifi, which appears after turning it on. Run 'ros2 launch p
 Hyperparameters like the p-value of the p-controller or the minimum distance to a point to consider it reached are defined at the very top of PrintControllerSingle.cpp. Creating a dynamic reconfigure node to change these values during run time is still work in progress.
 
 
+## Starting Simulation 3 Drones
+Before starting the Simulation, the models has to be imported
+Open a command window and navigate to your workspace with cd ~/"workspacename"
+Run the following commands:
+
+    source install/setup.bash
+    export GAZEBO_MODEL_PATH=${PWD}/install/tello_gazebo/share/tello_gazebo/models
+    source /usr/share/gazebo/setup.sh
+ 
+After that, you can start the simulation with 'ros2 launch print_controller simulate3drones_selfpositioning.py'
+This starts the simulation of 3 drones. The drones take off and fly to their starting formation. When this positions is reached, you can send the path by running 'ros2 run gcode_to_path PathFromGcode --ros-args -p gcode_path:="<Path to your GCode>"'
+
+The drones start to follow the path in their formation
+
+## Starting 3 Drones in real life
+
+To controll multiple drones with one PC/laptop etc. the wifi networks (and the sent udp packages) of the single drones have to be forwarded to one LAN-Network.
+This was done according to https://github.com/clydemcqueen/udp_forward.git
+A image for the Raspberry (only for the first one) is in this github repo (named rp1_image.zip)
+
+Write the image to an SD-card using a cardreader. (if you face problems with the size of the image, there are ways to shrink the image, you need to use an ubuntu operating system to do so)
+You need one rasperry Pi for each drone. Once you wrote the image and started the RPi you also need to adapt the file 'telloX.sh', so the udp packages get forwarded to the correct IP adresses (based on your LAN-network IP adresses). There is an image in this repo which shows the networks structure and IP adresses i used.
+
+Since we had problems with the RPi's onboard wifi module (driver crashed once videostream was started), we used extra USB wifidongles, one for each RPi.
+There are probably ways to get rid of the RPi's and only use the USB wifidongles instead. (e.g. explained here https://medium.com/@henrymound/adventures-with-dji-ryze-tello-controlling-a-tello-swarm-1bce7d4e045d)
+
+You need to setup the RPi's to automatically connect to one (and only one) of the drones, when the drones are powered on.
+Once all 3 RPi's are powered on, you can power on the drones and the RPi's should connect to the wifi of the drones (one Raspberry per connects to one drone)
+
+Then you can start the launchfile with 'ros2 launch print_controller 3drones_selfpositioning.py' which establishes the connection from ROS2 to the drones (uses the tello_driver_main node)
+After 30 seconds the 3 drones automatically take off. I faced some problems with the take off:
+  -> if the drone battery is low, they dont take off --> change battery
+  -> rarely but sometimes one or more dont take off (reason is not known) --> if this happens just restart the launchfile
+
+Then the drones fly to their starting positions in order to get to their flight formation.
+Once they are in formation, send the path with 'ros2 run gcode_to_path PathFromGcode --ros-args -p gcode_path:="<Path to your GCode>"'
+When they reached their start formation, the drones start to fly along the path maintaining their formation. 
+
+To land the drones you need to call the following service:
+
+'ros2 service call /drone1/tello_action tello_msgs/TelloAction "{cmd: 'land'}"'
+'ros2 service call /drone2/tello_action tello_msgs/TelloAction "{cmd: 'land'}"'
+'ros2 service call /drone3/tello_action tello_msgs/TelloAction "{cmd: 'land'}"'
+
+
+## TIPS:
+
+-try to avoid using a virtual machine,  this only rises problems with network connection, processing power etc --> set up a native Ubuntu 22.04 operating system (e.g dual boot) or use docker
+-make sure, the poster with the markers is well illuminated, we used additional external light sources (with bad lighting you get a lot of encoder errors and this makes it unable to control the drones)
+-look for alternatives to the Raspberrys and try to get a solution with only using the wifi dongles
+-there are alternative ways to ROS2 to control the tello drones (e.g there is a python open source library, maybe have a look at the functionalities of that one too)
+
+
+
+
