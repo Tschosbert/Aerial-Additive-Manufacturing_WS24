@@ -97,8 +97,11 @@ To land the drones you need to call the following service:
 ## TIPS:
 
 -try to avoid using a virtual machine,  this only rises problems with network connection, processing power etc --> set up a native Ubuntu 22.04 operating system (e.g dual boot) or use docker
+
 -make sure, the poster with the markers is well illuminated, we used additional external light sources (with bad lighting you get a lot of encoder errors and this makes it unable to control the drones)
+
 -look for alternatives to the Raspberrys and try to get a solution with only using the wifi dongles
+
 -there are alternative ways to ROS2 to control the tello drones (e.g there is a python open source library, maybe have a look at the functionalities of that one too)
 
 
