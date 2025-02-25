@@ -66,7 +66,7 @@ The drones start to follow the path in their formation
 ## Starting 3 Drones in real life
 
 To controll multiple drones with one PC/laptop etc. the wifi networks (and the sent udp packages) of the single drones have to be forwarded to one LAN-Network.
-This was done according to https://github.com/clydemcqueen/udp_forward.git
+This was done according to https://github.com/clydemcqueen/flock2?tab=readme-ov-file and https://github.com/clydemcqueen/udp_forward.git
 
 
 Write the image for the operating system of the Raspberry to an SD-card using a cardreader. (if you use an existing image and face problems with the size of the image, there are ways to shrink the image, you need to use an ubuntu operating system to do so)
