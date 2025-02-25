@@ -76,7 +76,7 @@ Since we had problems with the RPi's onboard wifi module (driver crashed once vi
 There are probably ways to get rid of the RPi's and only use the USB wifidongles instead. (e.g. explained here https://medium.com/@henrymound/adventures-with-dji-ryze-tello-controlling-a-tello-swarm-1bce7d4e045d)
 
 You need to setup the RPi's to automatically connect to one (and only one) of the drones, when the drones are powered on.
-Once all 3 RPi's are powered on, you can power on the drones and the RPi's should connect to the wifi of the drones (one Raspberry per connects to one drone)
+Once all 3 RPi's are powered on, you can power on the drones and the RPi's should connect to the wifi of the drones
 
 Then you can start the launchfile with 'ros2 launch print_controller 3drones_selfpositioning.py' which establishes the connection from ROS2 to the drones (uses the tello_driver_main node)
 After 30 seconds the 3 drones automatically take off. I faced some problems with the take off:
