@@ -92,7 +92,9 @@ When they reached their start formation, the drones start to fly along the path 
 To land the drones you need to call the following service:
 
 'ros2 service call /drone1/tello_action tello_msgs/TelloAction "{cmd: 'land'}"'
+
 'ros2 service call /drone2/tello_action tello_msgs/TelloAction "{cmd: 'land'}"'
+
 'ros2 service call /drone3/tello_action tello_msgs/TelloAction "{cmd: 'land'}"'
 
 
