@@ -80,7 +80,9 @@ Once all 3 RPi's are powered on, you can power on the drones and the RPi's shoul
 
 Then you can start the launchfile with 'ros2 launch print_controller 3drones_selfpositioning.py' which establishes the connection from ROS2 to the drones (uses the tello_driver_main node)
 After 30 seconds the 3 drones automatically take off. I faced some problems with the take off:
+  
   -> if the drone battery is low, they dont take off --> change battery
+  
   -> rarely but sometimes one or more dont take off (reason is not known) --> if this happens just restart the launchfile
 
 Then the drones fly to their starting positions in order to get to their flight formation.
